@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            background-color: lightpink;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: 0 auto;
+            margin-top: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        #message {
+            display: none;
+            background: #f1f1f1;
+            color: #000;
+            position: relative;
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+        #message p {
+            padding: 10px 35px;
+            font-size: 18px;
+        }
+
+        .valid {
+            color: green;
+        }
+
+        .valid:before {
+            position: relative;
+            left: -35px;
+            content: "\2713";
+        }
+
+        .invalid {
+            color: red;
+        }
+
+        .invalid:before {
+            position: relative;
+            left: -35px;
+            content: "\2717";
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form name="form" action="homepage.html" method="post">
+            <label for="usrname">Username</label>
+            <input type="text" id="usrname" name="usrname" required>
+
+            <label for="psw">Password</label>
+            <input type="password" id="psw" name="psw" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+
+            <input type="submit" value="Login">
+            <p id="error-message" style="color: red; display: none;">Invalid username or password. Please try again.</p>
+        </form>
+    </div>
+
+    <script>
+        var usrname = document.forms['form']['usrname'];
+        var psw = document.forms['form']['psw'];
+        var errorMessage = document.getElementById('error-message');
+
+        document.forms['form'].addEventListener('submit', function (event) {
+            if (!validated()) {
+                event.preventDefault();
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+            }
+        });
+
+        function validated() {
+            var validUsername = 'JTG';
+            var validPassword = '010905';
+
+            var isEmailValid = usrname.value === validUsername;
+            var isPasswordValid = psw.value === validPassword;
+
+            if (!isEmailValid || !isPasswordValid) {
+                usrname.style.border = "1px solid red";
+                psw.style.border = "1px solid red";
+                usrname.focus();
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
